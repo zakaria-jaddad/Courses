@@ -1,1 +1,3 @@
-# My-Path-In-Open-Source-Society-University
+# My progress in OSSU Program
+
+**Wish me best of luck**
