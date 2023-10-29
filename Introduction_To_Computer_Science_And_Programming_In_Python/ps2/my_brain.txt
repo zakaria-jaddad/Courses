@@ -1,0 +1,27 @@
+this is my brain fo know though i have been coding for several hours in a side project 
+
+requirement : 
+    make a function hangman 
+        -> That will allow the user to play hangmanagainst the computer. 
+        -> The computer picks the word, and the player tries to guessletters in the word.
+
+    logic : 
+        1.The computer must select a word at random from the list of available wordsthat was provided in words.txt​Note that words.txt contains words in all lowercase letters.
+        2.The user is given a certain number of guesses at the beginning.
+        3.The game is interactive; the user inputs their guess and the computer either:
+            a.reveals the letter if it exists in the secret word
+            b.penalize the user and updates the number of guesses remaining
+        4. The game ends when either the user guesses the secret word, or the user runsout of guesses
+
+
+Problem 2: Implemmenting helper funcitons 
+
+    1 : is_word_guessed (secret_word : string, letters_guessed : list) => bool
+        -> checkes is the current guessed letters match the word
+
+    2:  get_guessed_word (secret_word : string, letters_guessed : list) => new string 
+        -> checks is current guessed letters are in the word 
+            - if True 
+                -> add the leter to the list 
+            - if False 
+                -> ad '_ ' to the list instead of the original letter
