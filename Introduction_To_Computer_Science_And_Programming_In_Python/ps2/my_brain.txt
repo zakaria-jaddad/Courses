@@ -42,4 +42,4 @@ Problem 2: Implemmenting helper funcitons
             Output : 
                 
                 >>> letters_guessed = ['e', 'i', 'k', 'p', 'r', 's'] 
-                >>> print get_available_letters(letters_guessed) abcdfghjlmnoqtuvwxyz3
+                >>> print get_available_letters(letters_guessed) abcdfghjlmnoqtuvwxyz
