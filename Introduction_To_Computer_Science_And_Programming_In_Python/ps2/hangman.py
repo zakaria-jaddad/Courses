@@ -284,8 +284,17 @@ def match_with_gaps(my_word, other_word):
         _ , and my_word and other_word are of the same length;
         False otherwise: 
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+
+    # checkes is 2 words has same lenght
+    if (len(my_word) == len(other_word)) : 
+
+        for i in range(len(my_word)) :
+
+            if other_word[i] != '_' : 
+                if not my_word[i] == other_word[i] : 
+                    return False
+
+    return True
 
 
 
@@ -350,8 +359,9 @@ if __name__ == "__main__":
     
     secret_word = choose_word(wordlist)
     print(secret_word)
+    print(match_with_gaps("that", '_ _ _ t'.replace(' ', '')))
     print("Welcome to the game Hangman!")
-    hangman(secret_word)
+    # hangman(secret_word)
 
 
 ###############

@@ -48,4 +48,8 @@ Problem 2: Implemmenting helper funcitons
 Problem 3 : Implemmentation The Game
 
 
-get_guessed_word(secret_word, LETTERS_GUESSED)
+Problem 4 : Game With Hints 
+
+        1 : match_with_gaps
+            this function takes the secret_word and an instance of the current guessed word 
+            checks over all letters and theier index over words ....
