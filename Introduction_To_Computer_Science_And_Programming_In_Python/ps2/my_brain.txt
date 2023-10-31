@@ -43,3 +43,9 @@ Problem 2: Implemmenting helper funcitons
                 
                 >>> letters_guessed = ['e', 'i', 'k', 'p', 'r', 's'] 
                 >>> print get_available_letters(letters_guessed) abcdfghjlmnoqtuvwxyz
+
+
+Problem 3 : Implemmentation The Game
+
+
+get_guessed_word(secret_word, LETTERS_GUESSED)
