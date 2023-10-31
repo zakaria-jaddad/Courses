@@ -6,7 +6,7 @@ requirement :
         -> The computer picks the word, and the player tries to guessletters in the word.
 
     logic : 
-        1.The computer must select a word at random from the list of available wordsthat was provided in words.txt​Note that words.txt contains words in all lowercase letters.
+        1.The computer must select a word at random from the list of available words that was provided in words.txt ​Note that words.txt contains words in all lowercase letters.
         2.The user is given a certain number of guesses at the beginning.
         3.The game is interactive; the user inputs their guess and the computer either:
             a.reveals the letter if it exists in the secret word
@@ -25,3 +25,21 @@ Problem 2: Implemmenting helper funcitons
                 -> add the leter to the list 
             - if False 
                 -> ad '_ ' to the list instead of the original letter
+
+            Output : 
+                
+                >>> secret_word = 'apple'  
+                >>> letters_guessed = ['e', 'i', 'k', 'p', 'r', 's'] 
+                >>> print(get_guessed_word(secret_word, letters_guessed)) '_ pp_ e'
+
+        3: get_available_letters(letters_guessed : list )  => string 
+            -> This function takes a list of guessed letters and return a string that has all English letters - letter_guessed list 
+                - To get all English letters 
+                
+                >>> import string 
+                >>> print(string.ascii_lowercase) abcdefghijklmnopqrstuvwxyz
+
+            Output : 
+                
+                >>> letters_guessed = ['e', 'i', 'k', 'p', 'r', 's'] 
+                >>> print get_available_letters(letters_guessed) abcdfghjlmnoqtuvwxyz3
