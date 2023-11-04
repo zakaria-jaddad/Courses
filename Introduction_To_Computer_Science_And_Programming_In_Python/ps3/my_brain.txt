@@ -1,0 +1,15 @@
+n : is number of current words that user has in their hands 
+
+Summ of a played word 
+    - > The score of a played word comes from 2 components 
+
+        - sum of letters points 
+        - This formula : [7 * ​word_leng​th - 3 * (n​ -​ word_length)] 
+            - > value of this 2 if lower than 1, assing 1 instead 
+
+
+Wild Cards * (place of a vowel)
+    in each hand theri should be a wild card (*)
+        - where user can used them instead of using vowels like a joker in pokers
+        - player dosn't recive any points for a wild card (*)
+            - >  though it ​does​ count as a used or unused letter when scoring

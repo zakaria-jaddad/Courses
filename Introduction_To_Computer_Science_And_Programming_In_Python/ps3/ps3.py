@@ -3,15 +3,15 @@
 # The 6.0001 Word Game
 # Created by: Kevin Luu <luuk> and Jenna Wiens <jwiens>
 #
-# Name          : <your name>
+# Name          : Zakaria Jaddad
 # Collaborators : <your collaborators>
-# Time spent    : <total time>
+# Time spent    : 3 Nov -> 
 
 import math
 import random
 import string
 
-VOWELS = 'aeiou'
+VOWELS = 'aeiou*'
 CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
 HAND_SIZE = 7
 
@@ -92,7 +92,28 @@ def get_word_score(word, n):
     returns: int >= 0
     """
     
-    pass  # TO DO... Remove this line when you implement this function
+
+    # storing word points 
+    word_points = 0
+
+    for char in word.lower() : 
+
+        # configur wildcard branch 
+        if char != '*' : 
+            word_points += SCRABBLE_LETTER_VALUES[char]
+
+
+    # storing Second component
+
+    second_component = (7 * len(word) - 3 * (n - len(word)))
+
+    if  second_component < 1 : 
+        second_component = 1
+
+    # getting Total score 
+    Total_score = word_points * second_component 
+
+    return Total_score
 
 #
 # Make sure you understand how this function works and what it does!
@@ -136,10 +157,25 @@ def deal_hand(n):
     hand={}
     num_vowels = int(math.ceil(n / 3))
 
+
+    """ 
+        This function should be modified 
+
+        in the vowels it should randomly take a reblace a vouwel from the hand 
+
+        Approach  : 
+            -> add the * in the VOWELS string 
+            -> in the end check if doesn't exist 
+                -> take a random number from 0 -> len(finalstring)
+                -> add it to it 
+    """
+
     for i in range(num_vowels):
         x = random.choice(VOWELS)
         hand[x] = hand.get(x, 0) + 1
     
+    hand['*'] = 1
+
     for i in range(num_vowels, n):    
         x = random.choice(CONSONANTS)
         hand[x] = hand.get(x, 0) + 1
@@ -168,7 +204,17 @@ def update_hand(hand, word):
     returns: dictionary (string -> int)
     """
 
-    pass  # TO DO... Remove this line when you implement this function
+    # a copie of dic 
+    copied_hand = hand.copy()
+
+    for char in word.lower() : 
+
+        if copied_hand.get(char, -1) != -1 : 
+
+            copied_hand[char] = copied_hand[char] - 1
+
+    return copied_hand
+
 
 #
 # Problem #3: Test word validity
@@ -185,7 +231,33 @@ def is_valid_word(word, hand, word_list):
     returns: boolean
     """
 
-    pass  # TO DO... Remove this line when you implement this function
+    POSSIBLE_WORDS = []
+
+    # get index of wildcard (*)
+    wildcard_index = word.find('*')
+
+    for vowel in VOWELS : 
+        # checking for possible words by changing (*) -> vowels 
+        if vowel != '*' : 
+            new_word = word[0 : wildcard_index] + vowel + word[wildcard_index + 1 : len(word)]
+
+            # if any new words exist return True
+            if new_word.lower() in word_list : 
+                return True
+
+    if not word.lower() in word_list : 
+        return False
+
+    new_hand = hand.copy()
+    for char in word.lower() : 
+
+        if new_hand.get(char, 0) == 0 :
+            return False
+
+        new_hand[char] = new_hand[char] - 1
+        
+
+    return True
 
 #
 # Problem #5: Playing a hand
@@ -343,3 +415,8 @@ def play_game(word_list):
 if __name__ == '__main__':
     word_list = load_words()
     play_game(word_list)
+    # print(is_valid_word('Qap*urr', {'r': 1, 'a': 3, 'p': 2, 'e': 1, 't': 1, 'u': 1},word_list))
+    # print(is_valid_word('EVIL', {'e': 1, 'v': 2, 'n': 1, 'i': 1, 'l': 2}, word_list))
+    # print(is_valid_word('Even', {'e': 1, 'v': 2, 'n': 1, 'i': 1, 'l': 2}, word_list))
+
+    # print(deal_hand(7))
