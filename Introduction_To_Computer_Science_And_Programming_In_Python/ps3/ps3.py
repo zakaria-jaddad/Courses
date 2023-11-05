@@ -5,7 +5,7 @@
 #
 # Name          : Zakaria Jaddad
 # Collaborators : <your collaborators>
-# Time spent    : 3 Nov -> 
+# Time spent    : 3 Nov -> 5 Nov
 
 import math
 import random
