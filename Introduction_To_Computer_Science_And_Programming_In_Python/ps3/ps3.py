@@ -11,7 +11,7 @@ import math
 import random
 import string
 
-VOWELS = 'aeiou*'
+VOWELS = 'aeiou'
 CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
 HAND_SIZE = 7
 
@@ -378,6 +378,11 @@ def substitute_hand(hand, letter):
     returns: dictionary (string -> int)
     """
 
+    if (letter == '*') : 
+        print("You can't remove (*) from a hand")
+        print('-----------')
+        return hand
+
     LETTER_VALUE = 0
     new_constants = CONSONANTS.replace(letter, '')
 
@@ -444,6 +449,7 @@ def play_game(word_list):
         while True :  
 
             HAND = deal_hand(HAND_SIZE)
+
             print(F'Current Hand : {show_hand(HAND)}')
             print('------------')
 
@@ -480,9 +486,3 @@ def play_game(word_list):
 if __name__ == '__main__':
     word_list = load_words()
     play_game(word_list)
-    # print(is_valid_word('Qap*urr', {'r': 1, 'a': 3, 'p': 2, 'e': 1, 't': 1, 'u': 1},word_list))
-    # print(is_valid_word('EVIL', {'e': 1, 'v': 2, 'n': 1, 'i': 1, 'l': 2}, word_list))
-    # print(is_valid_word('Even', {'e': 1, 'v': 2, 'n': 1, 'i': 1, 'l': 2}, word_list))
-
-    # print(deal_hand(7))
-    # print(calculate_handlen({'r': 1, 'a': 3, 'p': 2, 'e': 1, 't': 1, 'u': 1}))
