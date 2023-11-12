@@ -20,20 +20,17 @@ def calculate_savings(**kwargs):
 
     current_savings = 0
 
-    # monthly salary
-    monthly_salary = annual_salary / 12
 
-    for i in range(36) : 
-
-        if i % 6 == 0 and i != 0: 
-            monthly_salary += annual_salary * semi_annual_raise
+    for i in range(1, 37) : 
+        monthly_salary =  annual_salary / 12
+        if i % 6 == 0: 
+            annual_salary *= 1 + semi_annual_raise
 
         current_savings += current_savings * (r / 12)
 
         current_savings += monthly_salary * portion_saved
 
-    
-
+    # 150000
     return current_savings
 
     
@@ -79,9 +76,10 @@ def main() :
     # binary search implementation
     while abs(current_savings - down_payment) >= epsilon : 
 
-        mid_bound = int(upper_bound + lower_bound) / 2.0  # mid point 
+        bisection_counter += 1
+        mid_bound = int(upper_bound + lower_bound) // 2  # mid point 
 
-        portion_saved = mid_bound / 10000 # convert the mid bound to a value from 0 to 1 
+        portion_saved = mid_bound / 10000.0 # convert the mid bound to a value from 0 to 1 
 
         current_savings = calculate_savings(
                             r = r, 
@@ -90,14 +88,14 @@ def main() :
                             portion_saved = portion_saved
                         )
         
-        print(current_savings, down_payment, portion_saved)
         if current_savings > down_payment + epsilon : 
             upper_bound = mid_bound
         
         elif current_savings < down_payment - epsilon : 
             lower_bound = mid_bound
+        else : 
+            break
 
-        bisection_counter += 1
 
 
     print(f'Best savings rate : {portion_saved}')
