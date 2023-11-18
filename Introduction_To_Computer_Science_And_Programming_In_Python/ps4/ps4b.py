@@ -53,7 +53,7 @@ def get_story_string():
     f.close()
     return story
 
-def is_valid_text(text, word_list) : 
+def get_valid_words_counter(text, word_list) : 
     """ 
     text : string  
     word_list : list of valid words 
@@ -299,7 +299,7 @@ class CiphertextMessage(Message):
             shifted_text = CiphertextMessage.apply_shift(self, shift).split(' ') # type list 
 
             # append number of valid words in the shifted text
-            all_shifts_valid_words.append(is_valid_text(text=shifted_text, word_list=word_list))
+            all_shifts_valid_words.append(get_valid_words_counter(text=shifted_text, word_list=word_list))
 
             shift += 1 
     

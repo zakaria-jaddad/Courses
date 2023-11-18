@@ -4,8 +4,8 @@
 # Time Spent: 
 
 import string
-import math 
 from ps4a import get_permutations
+from ps4b import get_valid_words_counter
 
 ### HELPER CODE ###
 def load_words(file_name):
@@ -181,9 +181,17 @@ class SubMessage(object):
         on the dictionary
         '''
         
-        # encrypted_text = ''
+        encrypted_text = ''
 
-        # for item
+        for letter in self.__text : 
+
+            if letter.isalpha() : 
+                encrypted_text += transpose_dict[letter]
+                continue
+            
+            encrypted_text += letter # add letter if not alpha
+
+        return encrypted_text
         
 class EncryptedSubMessage(SubMessage):
     def __init__(self, text):
@@ -196,7 +204,7 @@ class EncryptedSubMessage(SubMessage):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
+        SubMessage.__init__(self, text)
 
     def decrypt_message(self):
         '''
@@ -216,8 +224,26 @@ class EncryptedSubMessage(SubMessage):
         
         Hint: use your function from Part 4A
         '''
-        pass #delete this line and replace with your code here
-    
+        
+        messages_grade = {}
+
+        permutaions = get_permutations(VOWELS_LOWER)
+
+        encrypted_text = EncryptedSubMessage.get_message_text(self)
+
+        for permutaion in permutaions : 
+
+            # get transpose dictionary, decrypt the decrypted message, store it's best number counter 
+            transpose_dict = EncryptedSubMessage.build_transpose_dict(self, permutaion)
+
+            decrypted_text = EncryptedSubMessage.apply_transpose(self, transpose_dict).split(' ')
+
+            # using function i defiend in ps4b.py in part B to use and i used it here 
+            messages_grade[get_valid_words_counter(text=decrypted_text, word_list=EncryptedSubMessage.get_valid_words(self))] = ' '.join(decrypted_text)
+
+        # return best one if not retrun original string 
+        return messages_grade[max(messages_grade)] or encrypted_text
+
 
 if __name__ == '__main__':
 
@@ -225,11 +251,28 @@ if __name__ == '__main__':
     message = SubMessage("Hello World!")
     permutation = "eaiuo"
     enc_dict = message.build_transpose_dict(permutation)
-    print(enc_dict)
-    # print("Original message:", message.get_message_text(), "Permutation:", permutation)
-    # print("Expected encryption:", "Hallu Wurld!")
-    # print("Actual encryption:", message.apply_transpose(enc_dict))
-    # enc_message = EncryptedSubMessage(message.apply_transpose(enc_dict))
-    # print("Decrypted message:", enc_message.decrypt_message())
-     
-    #TODO: WRITE YOUR TEST CASES HERE
+    print('\n\n\n\n')
+    print("Original message:", message.get_message_text(), "Permutation:", permutation)
+    print("Expected encryption:", "Hallu Wurld!")
+    print("Actual encryption:", message.apply_transpose(enc_dict))
+    print('\n\n\n\n')
+    enc_message = EncryptedSubMessage(message.apply_transpose(enc_dict))
+    print("Decrypted message:", enc_message.decrypt_message())
+    
+    
+    print('\n\n\n\nmy test Case\n\n\n\n')
+
+
+    # MY TEST CASES HERE
+    my_message = SubMessage('Hello MIT, my name is Zakaria Jaddad!!!!')
+    permutation = 'ioeua' # new permutation 
+    encryption_dict = my_message.build_transpose_dict(permutation)
+    print('\n\n\n\n')
+    print("Original message:", my_message.get_message_text(), "Permutation:", permutation)
+    print("Expected encryption:", "Helli MOT, my nume os Zukurou Juddud!!!")
+    print("Actual encryption:", my_message.apply_transpose(encryption_dict))
+    print('\n\n\n\n')
+    enc_message = EncryptedSubMessage(my_message.apply_transpose(encryption_dict))
+    print("Decrypted message:", enc_message.decrypt_message())
+
+
