@@ -22,3 +22,21 @@ for i in range(len(bow) + 1) : # to check how many itteration
     
 
 print(hello)
+
+
+# math test 
+
+"""     
+    #  i + k  >  26
+
+    # 25 + 10 -> 9
+
+    # 12 + 10 -> 22 
+
+    i => index of letter 
+    k => shift number 
+
+"""
+
+print((25 + 10) % 26, 9)
+print((12 + 10) % 26, 22)

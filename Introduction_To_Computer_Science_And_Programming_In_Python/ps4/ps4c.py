@@ -1,9 +1,10 @@
 # Problem Set 4C
-# Name: <your name here>
-# Collaborators:
-# Time Spent: x:xx
+# Name: Zakaria Jaddad
+# Collaborators: None
+# Time Spent: 
 
 import string
+import math 
 from ps4a import get_permutations
 
 ### HELPER CODE ###
@@ -70,15 +71,16 @@ class SubMessage(object):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
-    
+        self.__text = text
+        self.__valid_words = load_words(WORDLIST_FILENAME)
+
     def get_message_text(self):
         '''
         Used to safely access self.message_text outside of the class
         
         Returns: self.message_text
         '''
-        pass #delete this line and replace with your code here
+        return self.__text
 
     def get_valid_words(self):
         '''
@@ -87,12 +89,11 @@ class SubMessage(object):
         
         Returns: a COPY of self.valid_words
         '''
-        pass #delete this line and replace with your code here
+        return self.__valid_words.copy()
                 
     def build_transpose_dict(self, vowels_permutation):
         '''
         vowels_permutation (string): a string containing a permutation of vowels (a, e, i, o, u)
-        
         Creates a dictionary that can be used to apply a cipher to a letter.
         The dictionary maps every uppercase and lowercase letter to an
         uppercase and lowercase letter, respectively. Vowels are shuffled 
@@ -106,10 +107,74 @@ class SubMessage(object):
         and "Hello World!" maps to "Hallu Wurld!"
 
         Returns: a dictionary mapping a letter (string) to 
-                 another letter (string). 
+                another letter (string). 
         '''
         
-        pass #delete this line and replace with your code here
+        def get_mapped_vowel(vowels_permutation :str, vowel : str) : 
+            """ 
+            input:
+                - vowels_permutation : string of vowels 
+                - vowel : string 
+            output: 
+                - shifted vowel : string 
+
+            Example: When input "e":
+            Mapping: e->a
+            vowels_permutation = (a, e, i, o, u)
+            and "e" maps to "a"
+
+            Example: When input "O":
+            Mapping: O->U
+            vowels_permutation = (a, e, i, o, u)
+            and "O" maps to "U"
+
+            Returns shifted vowel according to vowels_permutation
+            """
+            # convert to lower 
+            vowels_permutation = vowels_permutation.lower()
+
+            # map for shuffeling 
+            shuffled_vowels  = {
+                vowels_permutation[0] : vowels_permutation[1], 
+                vowels_permutation[1] : vowels_permutation[0], 
+                vowels_permutation[2] : vowels_permutation[2], 
+                vowels_permutation[3] : vowels_permutation[4], 
+                vowels_permutation[4] : vowels_permutation[3]
+            }
+            
+
+            # temp variable to work in lower case 
+            temp_vowel = vowel.lower()
+
+            shuffeld_vowel = shuffled_vowels[temp_vowel]
+
+            # cheking if vowel is uppercase 
+            if vowel.isupper() : 
+                shuffeld_vowel = shuffeld_vowel.upper()
+        
+            return shuffeld_vowel
+
+            
+
+        map_dic = {}
+
+        for letter in self.__text : 
+
+            if not letter.isalpha() or letter in map_dic : 
+                continue
+
+            if letter in VOWELS_LOWER or letter in VOWELS_LOWER : 
+                
+                # vowel shifting implementation
+                map_dic[letter] = get_mapped_vowel(vowels_permutation, letter)
+
+                continue
+
+            # if letter is just an alphbitic 
+            map_dic[letter] = letter
+
+        return map_dic
+
     
     def apply_transpose(self, transpose_dict):
         '''
@@ -161,10 +226,11 @@ if __name__ == '__main__':
     message = SubMessage("Hello World!")
     permutation = "eaiuo"
     enc_dict = message.build_transpose_dict(permutation)
-    print("Original message:", message.get_message_text(), "Permutation:", permutation)
-    print("Expected encryption:", "Hallu Wurld!")
-    print("Actual encryption:", message.apply_transpose(enc_dict))
-    enc_message = EncryptedSubMessage(message.apply_transpose(enc_dict))
-    print("Decrypted message:", enc_message.decrypt_message())
+    print(enc_dict)
+    # print("Original message:", message.get_message_text(), "Permutation:", permutation)
+    # print("Expected encryption:", "Hallu Wurld!")
+    # print("Actual encryption:", message.apply_transpose(enc_dict))
+    # enc_message = EncryptedSubMessage(message.apply_transpose(enc_dict))
+    # print("Decrypted message:", enc_message.decrypt_message())
      
     #TODO: WRITE YOUR TEST CASES HERE
