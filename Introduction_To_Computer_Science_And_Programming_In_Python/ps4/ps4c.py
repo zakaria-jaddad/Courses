@@ -158,12 +158,9 @@ class SubMessage(object):
 
         map_dic = {}
 
-        for letter in self.__text : 
+        for letter in string.ascii_letters : 
 
-            if not letter.isalpha() or letter in map_dic : 
-                continue
-
-            if letter in VOWELS_LOWER or letter in VOWELS_LOWER : 
+            if letter in VOWELS_LOWER or letter in VOWELS_UPPER : 
                 
                 # vowel shifting implementation
                 map_dic[letter] = get_mapped_vowel(vowels_permutation, letter)
@@ -184,7 +181,9 @@ class SubMessage(object):
         on the dictionary
         '''
         
-        pass #delete this line and replace with your code here
+        # encrypted_text = ''
+
+        # for item
         
 class EncryptedSubMessage(SubMessage):
     def __init__(self, text):
