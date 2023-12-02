@@ -1,6 +1,6 @@
 # 6.0001/6.00 Problem Set 5 - RSS Feed Filter
-# Name:
-# Collaborators:
+# Name: Zakraia Jaddad
+# Collaborators: None 
 # Time: 
 
 import feedparser
@@ -54,8 +54,50 @@ def process(url):
 
 # Problem 1
 
-# TODO: NewsStory
+class NewsStory : 
 
+    def __init__(self, guid, title, description, link, pubdate): 
+        self.__guid = guid
+        self.__title = title, 
+        self.__description = description
+        self.__link = link
+        self.__pubdate = pubdate
+
+
+    # guid  
+    def get_guid(self): 
+        return self.__guid
+
+    def set_guid(self, new_guid):
+        self.__guid = new_guid         
+
+    # title
+    def get_title(self):
+        return self.__title
+    
+    def set_title(self, new_title): 
+        self.__title = new_title
+
+    # description
+    def get_description(self):
+        return self.__description
+    
+    def set_description(self, new_description):
+        self.__description = new_description
+
+    # link
+    def get_link(self):
+        return self.__link
+    
+    def set_link(self, new_link):
+        self.__link = new_link
+
+    # pubdate
+    def get_pubdate(self): 
+        return self.__pubdate
+
+    def set_pubdate(self, new_pubdate): 
+        self.__pubdate = new_pubdate
 
 #======================
 # Triggers
