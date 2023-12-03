@@ -4,6 +4,7 @@
 # Time: 
 
 import feedparser
+import requests
 import string
 import time
 import threading
@@ -11,6 +12,7 @@ from project_util import translate_html
 from mtTkinter import *
 from datetime import datetime
 import pytz
+import re
 
 
 #-----------------------------------------------------------------------
@@ -26,7 +28,15 @@ def process(url):
     Fetches news items from the rss url and parses them.
     Returns a list of NewsStory-s.
     """
-    feed = feedparser.parse(url)
+
+    response = requests.get(url, verify=False)
+
+    feed_content = response.content
+
+    # editing 
+
+    feed = feedparser.parse(feed_content)
+    print(feed)
     entries = feed.entries
     ret = []
     for entry in entries:
@@ -58,7 +68,7 @@ class NewsStory :
 
     def __init__(self, guid, title, description, link, pubdate): 
         self.__guid = guid
-        self.__title = title, 
+        self.__title = title
         self.__description = description
         self.__link = link
         self.__pubdate = pubdate
@@ -115,36 +125,120 @@ class Trigger(object):
 # PHRASE TRIGGERS
 
 # Problem 2
-# TODO: PhraseTrigger
+class PhraseTrigger(Trigger): 
+
+    def __init__(self, phrase : str) -> None:
+        super().__init__()
+        self.__phrase = phrase
+
+    def is_phrase_in(self, text : str) -> bool:
+        """ 
+            takes a text: string
+        """
+
+        # case sensitive
+        phrase = self.__phrase.lower().split(' ')
+        text = text.lower()
+
+        # removeing punctuations
+        clean_text = re.sub(r'[^a-zA-Z0-9\s]', ' ', text)
+
+        clean_text = clean_text.split(' ')
+
+        # simple binary search 
+        correct_word_counter = 0
+
+
+        for word in clean_text: 
+
+            if len(word) == 0: 
+                continue
+
+            if word == phrase[correct_word_counter]: 
+                correct_word_counter += 1
+
+            else : # means start again it's not the right words 
+                correct_word_counter = 0
+
+
+            if correct_word_counter == len(phrase): 
+                return True
+
+        return False
 
 # Problem 3
-# TODO: TitleTrigger
+class TitleTrigger(PhraseTrigger): 
+    def __init__(self, phrase: str) -> None:
+        super().__init__(phrase)
+
+    def evaluate(self, story):
+        return self.is_phrase_in(story.get_title())
 
 # Problem 4
-# TODO: DescriptionTrigger
+class DescriptionTrigger(PhraseTrigger):
+    def __init__(self, phrase: str) -> None:
+        super().__init__(phrase)
 
+    def evaluate(self, story):
+        return self.is_phrase_in(story.get_description())
+        
 # TIME TRIGGERS
 
 # Problem 5
-# TODO: TimeTrigger
-# Constructor:
-#        Input: Time has to be in EST and in the format of "%d %b %Y %H:%M:%S".
-#        Convert time from string to a datetime before saving it as an attribute.
+class TimeTrigger(Trigger): 
+    def __init__(self, time: str) -> None:
+        super().__init__()
+        # convert time to datetime
+        self.__time = datetime.strptime(time, "%d %b %Y %H:%M:%S")
+
+    def get_time(self):
+        return self.__time  
 
 # Problem 6
-# TODO: BeforeTrigger and AfterTrigger
+class BeforeTrigger(TimeTrigger):
+    def __init__(self, time: str) -> None:
+        super().__init__(time)
+
+    def evaluate(self, story) -> bool:
+        return story.get_pubdate().replace(tzinfo=pytz.timezone("EST")) < self.get_time().replace(tzinfo=pytz.timezone("EST"))
+
+class AfterTrigger(TimeTrigger):
+    def __inti__(self, time: str) -> None:
+        super().__init__(time)
+
+    def evaluate(self, story) -> bool :
+        return story.get_pubdate().replace(tzinfo=pytz.timezone("EST")) > self.get_time().replace(tzinfo=pytz.timezone("EST"))
 
 
 # COMPOSITE TRIGGERS
 
 # Problem 7
-# TODO: NotTrigger
+class NotTrigger(Trigger):
+
+    def __init__(self, trigger) -> None:
+        self.__trigger = trigger
+        
+    def evaluate(self, story):
+        return not self.__trigger.evaluate(story)
+
 
 # Problem 8
-# TODO: AndTrigger
+class AndTrigger(Trigger): 
+    def __init__(self, trigger_1, trigger_2 ) -> None:
+        self.__trigger_1 = trigger_1
+        self.__trigger_2 = trigger_2
+
+    def evaluate(self, story):
+        return self.__trigger_1.evaluate(story) and self.__trigger_2.evaluate(story)
 
 # Problem 9
-# TODO: OrTrigger
+class OrTrigger(Trigger): 
+    def __init__(self, trigger_1, trigger_2) -> None:
+        self.__trigger_1 = trigger_1
+        self.__trigger_2 = trigger_2
+
+    def evaluate(self, story):
+            return self.__trigger_1.evaluate(story) or self.__trigger_2.evaluate(story)
 
 
 #======================
@@ -240,10 +334,13 @@ def main_thread(master):
 
             print("Polling . . .", end=' ')
             # Get stories from Google's Top Stories RSS news feed
-            stories = process("http://news.google.com/news?output=rss")
+            stories = process("https://news.google.com/news?output=rss")
 
             # Get stories from Yahoo's Top Stories RSS news feed
-            stories.extend(process("http://news.yahoo.com/rss/topstories"))
+            """ 
+                This is no longer working 
+            """
+            # stories.extend(process("http://news.yahoo.com/rss/topstories"))
 
             stories = filter_stories(stories, triggerlist)
 
@@ -252,7 +349,8 @@ def main_thread(master):
 
 
             print("Sleeping...")
-            time.sleep(SLEEPTIME)
+            print(10, 'hello', stories)
+            time.sleep(10)
 
     except Exception as e:
         print(e)
