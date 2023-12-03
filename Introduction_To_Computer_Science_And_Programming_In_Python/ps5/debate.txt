@@ -1,0 +1,17 @@
+// debate new before 3 hourse 
+debate_before_3,BEFORE,19 Oct 2023 17:00:10
+
+GAZA,TITLE,GAZA
+
+debate_after_3,AFTER,19 Oct 2023 17:00:10
+
+debate_before_3,BEFORE,19 Oct 2023 17:00:10
+
+// combine them before
+t1,AND,debate_before_3,GAZA
+
+// combine them after
+t2,AND,debate_after_3,GAZA
+
+// ADD
+ADD,t2

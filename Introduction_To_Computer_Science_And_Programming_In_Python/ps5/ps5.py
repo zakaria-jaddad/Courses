@@ -29,14 +29,16 @@ def process(url):
     Returns a list of NewsStory-s.
     """
 
-    response = requests.get(url, verify=False)
-
+    """ 
+        -> this is edited 
+        if you have a prolem getting a blank feeds that is beacuase 
+            of the SSL Verification 
+    """
+    response = requests.get(url, verify=True)
     feed_content = response.content
 
-    # editing 
-
+    # not edited 
     feed = feedparser.parse(feed_content)
-    print(feed)
     entries = feed.entries
     ret = []
     for entry in entries:
@@ -224,7 +226,7 @@ class NotTrigger(Trigger):
 
 # Problem 8
 class AndTrigger(Trigger): 
-    def __init__(self, trigger_1, trigger_2 ) -> None:
+    def __init__(self, trigger_1, trigger_2) -> None:
         self.__trigger_1 = trigger_1
         self.__trigger_2 = trigger_2
 
@@ -252,11 +254,25 @@ def filter_stories(stories, triggerlist):
 
     Returns: a list of only the stories for which a trigger in triggerlist fires.
     """
-    # TODO: Problem 10
-    # This is a placeholder
-    # (we're just returning all the stories, with no filtering)
-    return stories
+    """ 
+    psaudo code : 
+        itter over all stories
+            if story evaluated by trigger 
+                append it to list 
 
+        return list 
+    """
+
+    # creat list 
+    triggerd_stories = []
+
+    for story in stories: 
+
+        for trigger in triggerlist:
+            if trigger.evaluate(story): 
+                triggerd_stories.append(story)
+
+    return triggerd_stories.copy()
 
 
 #======================
@@ -264,6 +280,20 @@ def filter_stories(stories, triggerlist):
 #======================
 # Problem 11
 def read_trigger_config(filename):
+
+    def create_instence(type, **kwargs): 
+        if type == 'TITLE': 
+            return TitleTrigger(kwargs["trigger"])
+        elif type == 'DESCRIPTION':
+            return DescriptionTrigger(kwargs["trigger"])
+        elif type == 'AFTER': 
+            return AfterTrigger(kwargs["trigger"])
+        elif type == 'BEFORE':
+            return BeforeTrigger(kwargs["trigger"])
+        elif type == 'AND': 
+            return AndTrigger(kwargs["trigger_1"], kwargs["trigger_2"])
+        elif type == 'OR':
+            return OrTrigger(kwargs["trigger_1"], kwargs["trigger_2"])
     """
     filename: the name of a trigger configuration file
 
@@ -279,12 +309,29 @@ def read_trigger_config(filename):
         if not (len(line) == 0 or line.startswith('//')):
             lines.append(line)
 
-    # TODO: Problem 11
-    # line is the list of lines that you need to parse and for which you need
-    # to build triggers
+    triggers = []
+    triggers_list = {}
 
-    print(lines) # for now, print it so you see what it contains!
+    for line in lines: 
 
+        # separet lines 
+        line = line.split(',')
+
+
+        if line[0] != 'ADD': 
+            if line[1] == 'AND' or line[1] == 'OR': 
+                triggers_list[line[0]] = create_instence(line[1], trigger_1=triggers_list[line[2]], trigger_2=triggers_list[line[3]]) # there is a dditional elment in line for and, or 
+            else: 
+                triggers_list[line[0]] = create_instence(line[1], trigger=line[2])
+
+        else: 
+            for i in range(1, len(line)):
+                # append trigger instences from triggers_list: dictionary to  triggres: list 
+                triggers.append(triggers_list[line[i]])
+
+    print(triggers)
+    return triggers
+    
 
 
 SLEEPTIME = 120 #seconds -- how often we poll
@@ -297,11 +344,10 @@ def main_thread(master):
         t2 = DescriptionTrigger("Trump")
         t3 = DescriptionTrigger("Clinton")
         t4 = AndTrigger(t2, t3)
-        triggerlist = [t1, t4]
+        t5 = TitleTrigger("elon musk")
+        triggerlist = [t1, t4, t2, t3, t5]
 
-        # Problem 11
-        # TODO: After implementing read_trigger_config, uncomment this line 
-        # triggerlist = read_trigger_config('triggers.txt')
+        triggerlist = read_trigger_config('debate.txt')
         
         # HELPER CODE - you don't need to understand this!
         # Draws the popup window that displays the filtered stories
@@ -349,8 +395,7 @@ def main_thread(master):
 
 
             print("Sleeping...")
-            print(10, 'hello', stories)
-            time.sleep(10)
+            time.sleep(SLEEPTIME)
 
     except Exception as e:
         print(e)

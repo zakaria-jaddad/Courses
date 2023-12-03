@@ -205,44 +205,44 @@ class ProblemSet5(unittest.TestCase):
         self.assertTrue(ny.evaluate(b), "OR of 'always false' and 'always true' should be true")
         self.assertFalse(nn.evaluate(b), "OR of 'always false' and 'always false' should be false")
 
-    # def test7FilterStories(self):
-    #     tt = TitleTrigger("New York City")
-    #     a = NewsStory('', "asfd New York City asfdasdfasdf", '', '', datetime.now())
-    #     b = NewsStory('', "asdfasfd new york city! asfdasdfasdf", '', '', datetime.now())
-    #     noa = NewsStory('', "something somethingnew york city", '', '', datetime.now())
-    #     nob = NewsStory('', "something something new york cities", '', '', datetime.now())
+    def test7FilterStories(self):
+        tt = TitleTrigger("New York City")
+        a = NewsStory('', "asfd New York City asfdasdfasdf", '', '', datetime.now())
+        b = NewsStory('', "asdfasfd new york city! asfdasdfasdf", '', '', datetime.now())
+        noa = NewsStory('', "something somethingnew york city", '', '', datetime.now())
+        nob = NewsStory('', "something something new york cities", '', '', datetime.now())
 
-    #     st = DescriptionTrigger("New York City")
-    #     a = NewsStory('', '', "asfd New York City asfdasdfasdf", '', datetime.now())
-    #     b = NewsStory('', '', "asdfasfd new york city! asfdasdfasdf", '', datetime.now())
-    #     noa = NewsStory('', '', "something somethingnew york city", '', datetime.now())
-    #     nob = NewsStory('', '', "something something new york cities", '', datetime.now())
+        st = DescriptionTrigger("New York City")
+        a = NewsStory('', '', "asfd New York City asfdasdfasdf", '', datetime.now())
+        b = NewsStory('', '', "asdfasfd new york city! asfdasdfasdf", '', datetime.now())
+        noa = NewsStory('', '', "something somethingnew york city", '', datetime.now())
+        nob = NewsStory('', '', "something something new york cities", '', datetime.now())
 
-    #     triggers = [tt, st, self.tt, self.ft]
-    #     stories = [a, b, noa, nob]
-    #     filtered_stories = filter_stories(stories, triggers)
-    #     for story in stories:
-    #         self.assertTrue(story in filtered_stories)
-    #     filtered_stories = filter_stories(stories, [self.ft])
-    #     self.assertEqual(len(filtered_stories), 0)
+        triggers = [tt, st, self.tt, self.ft]
+        stories = [a, b, noa, nob]
+        filtered_stories = filter_stories(stories, triggers)
+        for story in stories:
+            self.assertTrue(story in filtered_stories)
+        filtered_stories = filter_stories(stories, [self.ft])
+        self.assertEqual(len(filtered_stories), 0)
 
-    # def test8FilterStories2(self):
-    #     a = NewsStory('', "asfd New York City asfdasdfasdf", '', '', datetime.now())
-    #     b = NewsStory('', "asdfasfd new york city! asfdasdfasdf", '', '', datetime.now())
-    #     noa = NewsStory('', "something somethingnew york city", '', '', datetime.now())
-    #     nob = NewsStory('', "something something new york cities", '', '', datetime.now())
+    def test8FilterStories2(self):
+        a = NewsStory('', "asfd New York City asfdasdfasdf", '', '', datetime.now())
+        b = NewsStory('', "asdfasfd new york city! asfdasdfasdf", '', '', datetime.now())
+        noa = NewsStory('', "something somethingnew york city", '', '', datetime.now())
+        nob = NewsStory('', "something something new york cities", '', '', datetime.now())
 
-    #     class MatchTrigger(Trigger):
-    #         def __init__(self, story):
-    #             self.story = story
-    #         def evaluate(self, story):
-    #             return story == self.story
-    #     triggers = [MatchTrigger(a), MatchTrigger(nob)]
-    #     stories = [a, b, noa, nob]
-    #     filtered_stories = filter_stories(stories, triggers)
-    #     self.assertTrue(a in filtered_stories)
-    #     self.assertTrue(nob in filtered_stories)
-    #     self.assertEqual(2, len(filtered_stories))
+        class MatchTrigger(Trigger):
+            def __init__(self, story):
+                self.story = story
+            def evaluate(self, story):
+                return story == self.story
+        triggers = [MatchTrigger(a), MatchTrigger(nob)]
+        stories = [a, b, noa, nob]
+        filtered_stories = filter_stories(stories, triggers)
+        self.assertTrue(a in filtered_stories)
+        self.assertTrue(nob in filtered_stories)
+        self.assertEqual(2, len(filtered_stories))
 
 
 if __name__ == "__main__":
