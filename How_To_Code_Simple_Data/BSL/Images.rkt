@@ -6,3 +6,6 @@
         (circle 30 "solid" "green")
         (circle 40 "solid" "blue")
         (circle 50 "solid" "white"))
+
+
+(overlay/align "left" "center" (rotate -225 (right-triangle 60 60 "solid" "red")) (above (rectangle 160 30 "solid" "black") (rectangle 160 30 "solid" "white") (rectangle 160 30 "solid" "seagreen")))
