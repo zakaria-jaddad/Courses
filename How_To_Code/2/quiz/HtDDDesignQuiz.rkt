@@ -25,7 +25,7 @@
 
 
 ;; Age -> Boolean
-;; determan if a perticular persone is teenager or not
+;; determan if a particular persone is teenager or not
 
 (check-expect (is-teenager? 15) true)
 (check-expect (is-teenager? 13) true)
@@ -115,8 +115,8 @@
 ;; - Natural
 ;; Interp. false means the player is dead, Natural number of lives player has
 
-(define HEALT1 10)
-(define HEALT3 false)
+(define HEALTH1 10)
+(define HEALTH3 false)
 
 ;; Template rules used
 ;; - atomic non-distinc: Natural

@@ -17,7 +17,7 @@
 
 
 ;; Number -> Number
-;; gets lenght of one side of a square, gives area of it
+;; gets length of one side of a square, gives area of it
 
 ;(define (area square_side) 0)    ; Slub
 

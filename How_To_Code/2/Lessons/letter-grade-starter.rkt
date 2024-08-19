@@ -12,7 +12,7 @@
 ; in a course, which is one of A, B or C.
 ;   
 
-;Here will be tree distinct value eather A, B or C
+;Here will be tree distinct value either A, B or C
 ; so we will us the cond for template and because i know what the values might be 
 
 ;Enumeration : consists of a fixed number of distinct items

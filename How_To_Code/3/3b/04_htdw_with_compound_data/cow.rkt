@@ -37,14 +37,14 @@
 ;; Constants:
 
 (define WIDTH 400)
-(define HEIGTH 200)
+(define HEIGHT 200)
 
-(define CTR-Y (/ HEIGTH 2))
+(define CTR-Y (/ HEIGHT 2))
 
 (define RCOW .)
 (define LCOW .)
 
-(define MTS (empty-scene WIDTH HEIGTH))
+(define MTS (empty-scene WIDTH HEIGHT))
 
 ;; ============
 ;; Data definition
@@ -62,7 +62,7 @@
        (cow-dx c))) ; Integer
 
 
-;; Templete rules used:
+;; Template rules used:
 ;; - compound: 2 fields
 
 

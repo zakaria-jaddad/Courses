@@ -16,11 +16,11 @@
 (define I1 (rectangle 10 20 "solid" "red"))
 (define I2 (rectangle 20 10 "solid" "blue"))
 
-; in this condition i check if the width of th image 2 is greather than it's height
-; if so retun it's with value
-; if not retun it's height value 
+; in this condition i check if the width of th image 2 is greater than it's height
+; if so return it's with value
+; if not return it's height value 
 
-; ouput image I2 height 20px
+; output image I2 height 20px
 (if (> (image-width I2) (image-height I2))
     (image-width I2)
     (image-height I2)
