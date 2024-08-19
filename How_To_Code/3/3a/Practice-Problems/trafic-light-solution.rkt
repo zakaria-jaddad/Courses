@@ -1,6 +1,6 @@
 ;; The first three lines of this file were inserted by DrRacket. They record metadata
 ;; about the language level of this file in a form that our tools can easily process.
-#reader(lib "htdp-beginner-reader.ss" "lang")((modname trafic-light-solution) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname traffic-light-solution) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
 (require 2htdp/image)
 (require 2htdp/universe)
 
@@ -38,7 +38,7 @@
 
 
 
-; Trafic light that has 3 states red yello green 
+; Traffic light that has 3 states red yellow green 
 
 ;; =================
 ;; Constants:
@@ -54,7 +54,7 @@
 ;; Data definitions:
 ;; ====================
 
-;; TraficLight is String
+;; TrafficLight is String
 ;; Interp. values of trfic light colors
 
 ;; Examples
@@ -63,7 +63,7 @@
 (define TL3 "green")
 
 #;
-(define (fn-for-trafic-light tl)
+(define (fn-for-traffic-light tl)
   (cond [(string=? "red"    tl) (... tl)]
         [(string=? "yellow" tl) (... tl)]
         [else (... tl)])
@@ -79,28 +79,28 @@
 ;; ====================
 
 (define (main tl)  
-  (big-bang tl                                    ; TraficLight
-      (on-tick advance-trafic-light 1)            ; TraficLight -> TraficLight 
-      (to-draw show-trafic-light)                  ; TraficLight -> Image         
+  (big-bang tl                                    ; TrafficLight
+      (on-tick advance-traffic-light 1)            ; TrafficLight -> TrafficLight 
+      (to-draw show-traffic-light)                  ; TrafficLight -> Image         
       )
   )
 
 
 
-;; TraficLight -> TraficLight
-;; advance to next trafic light
+;; TrafficLight -> TrafficLight
+;; advance to next traffic light
 
 ;; Stub
 #;
-(define (advance-trafic-light tl) "red")
+(define (advance-traffic-light tl) "red")
 
 ;; Test
-(check-expect (advance-trafic-light "red") "green")
-(check-expect (advance-trafic-light "yellow") "red")
-(check-expect (advance-trafic-light "green") "yellow")
+(check-expect (advance-traffic-light "red") "green")
+(check-expect (advance-traffic-light "yellow") "red")
+(check-expect (advance-traffic-light "green") "yellow")
 
-;; Template used from TraficLight
-(define (advance-trafic-light tl)
+;; Template used from TrafficLight
+(define (advance-traffic-light tl)
   (cond [(string=? "red"    tl) "green"]
         [(string=? "yellow" tl) "red"]
         [else "yellow"])
@@ -108,15 +108,15 @@
 
 
 
-;; TraficLight -> Image
-;; show current trafic light from the given state of it
+;; TrafficLight -> Image
+;; show current traffic light from the given state of it
 
 ;; Stub
 #;
-(define (advance-show-trafic-light tl) "hello")
+(define (advance-show-traffic-light tl) "hello")
 
 ;; Test
-(check-expect (show-trafic-light "red")
+(check-expect (show-traffic-light "red")
               (show-image
                (above
                 (circle RADIUS "outline" "red")
@@ -125,7 +125,7 @@
                 )
                )
               )
-(check-expect (show-trafic-light "yellow")
+(check-expect (show-traffic-light "yellow")
               (show-image
                (above
                 (circle RADIUS "solid" "red")
@@ -134,7 +134,7 @@
                 )
                )
               )
-(check-expect (show-trafic-light "green")
+(check-expect (show-traffic-light "green")
               (show-image
                (above
                 (circle RADIUS "outline" "red")
@@ -144,8 +144,8 @@
                )
               )
 
-;; Template used from TraficLight
-(define (show-trafic-light tl)
+;; Template used from TrafficLight
+(define (show-traffic-light tl)
   (cond [
          (string=? "red" tl)
          (show-image
@@ -181,7 +181,7 @@
 
 
 ;;Image -> Image
-;; show image of rafic light in a screen with a given hight and width
+;; show image of rafic light in a screen with a given height and width
 
 ;;Test
 (check-expect (show-image (square 50 "solid" "green"))

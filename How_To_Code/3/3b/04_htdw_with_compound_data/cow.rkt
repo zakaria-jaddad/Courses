@@ -57,7 +57,7 @@
 (define C2 (make-cow 20 -4)); position 20 from left <- right
 
 #;
-(define (fn-for-row c)
+(define (fn-for-cow c)
   (... (cow-x c)    ; Natural[0, WIDTH]
        (cow-dx c))) ; Integer
 
