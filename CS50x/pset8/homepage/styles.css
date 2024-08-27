@@ -1,0 +1,113 @@
+h5{
+    padding-left: 37%;
+}
+p{
+    margin-bottom: 0;
+}
+div{
+    box-sizing: border-box;
+}
+body.main{
+    padding-top: 30px;
+    margin-left: 1cm;
+    margin-right: 1cm;
+    background-image: url('https://cdn.streamelements.com/uploads/e712220b-9f2e-49cd-873b-005bfb1c1a2f.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.title{
+    font-size: large;
+    font-weight: bold;
+}
+.name{
+
+    margin-bottom: 5%;
+}
+.name_1{
+    margin-left: 37%;
+}
+.face{
+    width: 30px;
+}
+.list{
+    list-style: none;
+}
+.li{
+    padding-left: 10px;
+    padding-right: 10px;
+    display: inline-block;
+}
+.bar{
+    width: 35px;
+    margin-top: -3px;
+}
+.container{
+    padding: 1cm;
+    display: flex;
+    width: 100%;
+
+}
+.index{
+    height: 50%;
+    margin: 30px 25% auto;
+    width: auto;
+    background: inherit;
+}
+.index_1{
+    height: 100%;
+    margin: 0 25% auto;
+    width: auto;
+    background-color: white;
+    padding-left: 2%;
+}
+.css_1{
+    z-index: 200;
+    position: relative;
+    width: 640px;
+}
+.css_2{
+    background-image: url('https://cdn.streamelements.com/uploads/e712220b-9f2e-49cd-873b-005bfb1c1a2f.png');
+    background-repeat: no-repeat;
+    position: relative;
+    height: 50px;
+    margin: 2cm;
+    background-size: cover;
+    background-position: center center;
+    background: inherit;
+    width: auto;
+    z-index: 200;
+}
+/* the icon */
+.css_2_2{
+    background-image: url('cat.jpg');
+    border-radius: 50%;
+    z-index: 100;
+    border: 4px solid white;
+    width: 110px;
+    height: 110px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: -20px;
+}
+.css_3{
+    background-color: white;
+}
+/* video */
+video{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+    transition: 1s opacity;
+}
+
+/* divs stcking in top of each other */

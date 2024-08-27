@@ -1,0 +1,1 @@
+SELECT (SELECT SUM(energy) FROM songs WHERE artist_id = (SELECT id FROM artists WHERE name = "Drake")) / (SELECT COUNT(energy) FROM songs WHERE artist_id = (SELECT id FROM artists WHERE name = "Drake")) AS the_average_energy_of_alL_the_songs_by_drake;

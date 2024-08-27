@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            window.addEventListener("load", function () {
+                let input = document.querySelector('input');
+                let p = document.getElementById('p');
+                document.querySelector('#check').addEventListener('click', function() {
+                    let name = document.querySelector('input').value;
+                    if(name === 'Morocco')
+                    {
+                        input.style.backgroundColor = 'green';
+                        p.innerHTML = 'You damn right'
+                    }
+                    else
+                    {
+                        input.style.backgroundColor = 'red';
+                        p.innerHTML = 'bruh try somthing else'
+                    }
+                });
+                let s_p = document.getElementById('s_p');
+                document.querySelector('#true').addEventListener('click', function(){
+                    yes = document.querySelector('#true');
+                    yes.style.backgroundColor = 'green';
+                    s_p.innerHTML = 'this is true';
+                });
+                // check for it here
+                let no = document.querySelectorAll('.false');
+                for (let i = 0; i < 4; i++)
+                {
+                    no[i].addEventListener('click', function() {
+                        no[i].style.backgroundColor = 'red';
+                        s_p.innerHTML = 'this is false';
+                    });
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>Wld Mn Houssme</h3>
+                <button class="button false" type="submit">Wld Samira</button>
+                <button class="button false" type="submit">Wld Halima</button>
+                <button class="button" type="submit" id="true">Wld Saaida</button>
+                <button class="button false" type="submit">Wld Fatna</button>
+                <button class="button false" type="submit">Wld Ilhame</button>
+                <p id="s_p"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>What Is The Best  Arabic Teame</h3>
+                <!-- TODO: Add free response question here -->
+                    <input type="text">
+                    <button id="check">Check Answer</button>
+                    <p id="p" class="p"></p>
+            </div>
+        </div>
+    </body>
+</html>

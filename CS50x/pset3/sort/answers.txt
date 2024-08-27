@@ -1,0 +1,11 @@
+sort1 uses: Bubble sort
+
+How do you know?: Because we know that bubble sort take less time in the best case which is 4.9 seconds but in the worst case it did take a more than 4.9 seconds
+
+sort2 uses: Merge sort
+
+How do you know?: i did know it because in the merge algorithm takes less time than the other algorithms and it has the same best case and worst case time
+
+sort3 uses: Selection sort
+
+How do you know?: Because it hase the same best and worst case time but it's time is heigher than the merge algorithm
