@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+<!-- title  -->
+{% block title %}
+    HEX To UNICODE
+{% endblock %}
+
+
+{% block main %}
+    <main class="container-fluid">
+        <div class="walo">
+            <!-- palce holder for the names -->
+            <h1>HEX to UNICODE converter</h1>
+            <h6 class="please">
+                <svg  width="50px" height="50px" fill="white" xmlns="http://www.w3.org/2000/svg" class="ionicon " viewBox="0 0 512 512">
+                    <path d="M190.06 414l163.12-139.78a24 24 0 000-36.44L190.06 98c-15.57-13.34-39.62-2.28-39.62 18.22v279.6c0 20.5 24.05 31.56 39.62 18.18z"/>
+                </svg>
+                Please Provide Spaces Between each hex senetnce
+            </h6>
+            <!-- palce holder for the names -->
+            <div class="app">
+                <div class="column">
+                    <label for="input">
+                        <!-- place holder of the name that will be inputed  -->
+                        <span class="label-input">HEX</span> 
+                        <br>
+                        <input type="text" id="hex-input">
+                    </label>
+                    <!-- the swap icon  -->
+
+                    <!-- the swap icon  -->
+                    <label for="output">
+                        <!-- place holder of the name that will be inputed  -->
+                        <span class="label-ouput">UNICODE</span>
+                        <br>
+                        <input type="text" id="uni-output">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

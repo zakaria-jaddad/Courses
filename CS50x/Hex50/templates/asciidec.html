@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+<!-- title  -->
+{% block title %}
+    ASCII To DECIMAL
+{% endblock %}
+
+
+{% block main %}
+    <main class="container-fluid">
+        <div class="walo">
+            <!-- palce holder for the names -->
+            <h1>ASCII to DECIMAL converter</h1>
+            <!-- palce holder for the names -->
+            <div class="app">
+                <div class="column">
+                    <label for="input">
+                        <!-- place holder of the name that will be inputed  -->
+                        <span class="label-input">ASCII</span> 
+                        <br>
+                        <input type="text" id="ascii-input">
+                    </label>
+                    <!-- the swap icon  -->
+                    <!-- the swap icon  -->
+                    <label for="output">
+                        <!-- place holder of the name that will be inputed  -->
+                        <span class="label-ouput">DEC</span>
+                        <br>
+                        <input type="text" id="dec-output">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
