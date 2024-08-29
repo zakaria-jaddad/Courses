@@ -10,8 +10,8 @@ By semester’s end, students emerge with knowledge and experience in principles
 
 ## TODO:
 - [x] [Search](./Project0/)
-- [x] [Mail](./Project1/)
-- [x] [Wiki](./Project2/)
+- [x] [Wiki](./Project1/)
+- [x] [Mail](./Project2/)
 - [x] [Commerce](./Project3/)
 - [x] [Network](./Project4/)
 - [ ] [Final Project](./Final_Project/)
