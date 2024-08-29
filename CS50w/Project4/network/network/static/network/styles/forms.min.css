@@ -1,0 +1,4 @@
+@import './color.min.css';
+.post-change-placeolder-color::placeholder {
+    color: var(--white-color) !important;
+}

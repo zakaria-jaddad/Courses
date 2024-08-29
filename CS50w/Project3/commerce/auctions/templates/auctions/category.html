@@ -1,0 +1,52 @@
+{% extends "auctions/layout.html" %}
+
+
+{% block body %}
+<div class="container">
+    <h2>Category: {{ category_name }}</h2>
+</div>
+
+
+{% if listings %}
+<div class="container">
+    <!-- ! looping from the ending of the list and that to see that last bid wich is the user's bid  -->
+    {% for listing in listings %}
+        {% if listing.active == "True" %}
+        <section class="lisitng-content">
+            <div class="listing-image">
+                <a href="{% url 'bid' listing.id %}">
+                {% if listing.image != "" %}
+                    <img src="{{ listing.image }}" alt="An image of a bid ">
+                {% else %}
+                    <div class="if-no-image flex">
+                        <i class="fa-sharp fa-solid fa-image"></i>
+                    </div>
+                {% endif %}
+                </a>
+            </div>
+            <div class="listing-information">
+                <a href="{% url 'bid' listing.id %}">
+                    <h4 class="title">{{ listing.title }}</h4>
+                </a>
+                <div class="bid-category">
+                    <p class="bid">Price : <span>${{ listing.bid }}</span></p>
+
+                    <!-- ! if no category -->
+
+                {% if listing.category != "" %}
+                    <p class="category">Category : {{ listing.category }}</p>
+                {% else %}                    
+
+                {% endif %}
+                </div>
+                <div class="listing_uername">{{ listing.user }}</div>
+            </div>
+        </section>
+        {% endif %}
+    {% endfor %}
+    </div>
+    
+{% endif %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'auctions/styles/styles-index-content.min.css' %}">
+{% endblock %}

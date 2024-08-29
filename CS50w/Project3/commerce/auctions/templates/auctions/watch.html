@@ -1,0 +1,65 @@
+{% extends "auctions/layout.html" %}
+
+
+{% block body %}
+<div class="container">
+    <h2>Watchlist</h2>
+</div>
+
+    <!-- here i can get all the values of the listing i need to make it tomorrow  -->
+    <!-- TODO: when the user press the listing they should be ridirected to listing page where 
+        TODO : the user can see all of the listing information 
+        TODO : the user also need's to have the ability to comment in the listing, make a hier bid, add the listing to their wish list -->
+{% if listings %}
+<div class="container">
+    <!-- ! looping from the ending of the list and that to see that last bid wich is the user's bid  -->
+    {% for listing in listings %}
+        <section class="lisitng-content">
+            <div class="listing-image">
+                <a href="{% url 'bid' listing.id  %}">
+                    {% if listing.image %}
+                        <img src="{{ listing.image }}" alt="An image of a bid ">
+                    {% else %}
+                        <div class="if-no-image flex">
+                            <i class="fa-sharp fa-solid fa-image"></i>
+                        </div>
+                    {% endif %}
+                </a>
+            </div>
+            <div class="listing-information">
+                <a href="{% url 'bid' listing.id  %}">
+                    <h4 class="title">{{ listing.title }}</h4>
+                </a>
+                <div class="bid-category">
+                    <p class="bid">Price: <span>${{ listing.bid }}</span></p>
+
+                    <!-- ! if no category -->
+                    {% if listing.category %}
+                        <p class="category">Category : {{ listing.category }}</p>
+                    {% endif %}
+
+                </div>
+                <div class="descreption">
+                    <span>Description :</span>
+                    <div>
+                        {{ listing.description }}
+                    </div>
+                </div>
+                <div class="auctino-user">
+                    {{ listing.user }}
+                </div>
+            </div>
+        </section>
+        {% endfor %}
+    </div>
+{% else %}
+<div class="container">
+    <div class="alert alert-primary lisitng-created" role="alert" id="alert">
+        There Is No Listing In Your Watchlist, <strong>Click To Remove</strong>.
+    </div>
+</div>
+{% endif  %}
+    
+{% load static %}
+<link rel="stylesheet" href="{% static 'auctions/styles/styles-index-content.min.css' %}">
+{% endblock %}

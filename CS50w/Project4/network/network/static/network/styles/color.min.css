@@ -1,0 +1,19 @@
+:root {
+    --black-color : #000;
+    --white-color : #fff;
+    --second-white-color : #b9b9b9;
+    --second-color : #199bef;
+    --main-hover-dark-background-color : rgb(231, 233, 234, 10%) ;
+    --border-color : #2f3337 ;
+    
+}
+/* darck mode */
+
+/* :root {
+    --black-color : #eee;
+    --white-color : #000;
+    --second-white-color : #505050;
+    --second-color : #199bef;
+    --main-hover-dark-background-color : rgb(9, 9, 9, 10%) ;
+    --border-color : #eef3f4 ;
+} */

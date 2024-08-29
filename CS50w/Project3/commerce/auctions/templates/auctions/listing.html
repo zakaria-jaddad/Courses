@@ -1,0 +1,163 @@
+{% extends "auctions/layout.html" %}
+
+
+{% block body %} 
+    <!-- if ther is an image  -->
+
+    <!-- ! if the user provided less of equal price for the original price  -->
+
+{% if new_price_error.4 == 'error'%}
+    {% if new_price_error.0 == True %}
+        <div class="alert alert-{{ new_price_error.3 }} lisitng-created" role="alert" id="alert">
+            {{ new_price_error.1 }} <strong>{{ new_price_error.2 }}</strong>
+        </div>
+    {% endif %}
+
+{% else %}
+    {% if new_price_error.0 == True %}
+    <div class="alert alert-{{ new_price_error.3 }}" role="alert">
+        <h4 class="alert-heading">Well done!</h4>
+        <p>{{ new_price_error.1 }}</p>
+        <hr>
+        <p class="mb-0">{{ new_price_error.2 }}</p>
+      </div>
+    {% endif %}
+{% endif %}
+
+<!-- ! if the user provide a good price  -->
+{% if new_price_success == True %}
+    <div class="alert alert-success lisitng-created" role="alert" id="alert">
+            Price Has Been Added Succesfully <strong>Click Here To Remove</strong>.
+    </div>
+{% endif %}
+
+
+
+    <div class="container">
+        <form action="{% url 'bid' listing.id %}" method="post">
+            {% csrf_token %}
+            <div class="sub-container-for-bg">
+                <div class="lisitng-content">
+                    <div class="content">
+                        <h1 class="title">{{ listing.title }}</h1>
+                        <!-- ! if there is a category fro this  -->
+                    {% if listing.category != "" %}
+                        <p class="category">Category : <strong>{{ listing.category }}</strong></p>
+                    {% else %}
+                        <p class="category">Category : no category</p>
+                        <!-- ! if there is no category for this  -->
+                    {% endif %}
+    
+                        <div class="list-active">
+                            <p class="list">listed by: <strong>{{ username.username }}</strong></p>
+    
+                            {% if listing.active == "True" %}
+                                <p class="active"><strong>Active</strong></p>
+                            {% else %}
+                                <p class="active"><strong>inactive</strong></p>
+                            {% endif %}
+    
+                        </div>
+                        <p class="mail">{{ username.email }}</p>
+                        <div class="button-new-bid-continer">
+
+                            {% if user.id == listing.user.pk %}
+
+                                {% if user.username == username.username  and listing.active == "True"%}
+                                    <div class="inactive">
+                                        <button type="submit" name="active">inactive</button>
+                                    </div>
+                                {% endif %}
+    
+                            {% else %}
+        
+        
+                                    <!-- ! the listing button -->
+                                    <!-- ! -->
+        
+                                    {% if watchlist == False %}
+        
+                                    <div class="button">
+                                        <button type="submit" name="add_listing">Add Watch list</button>
+                                    </div>
+                                    
+                                    {% else %}
+                                    
+                                    <div class="button">
+                                        <button type="submit" name="remove_listing">Remove From Watch List</button>
+                                    </div>
+        
+                                    {% endif %}
+        
+                                    <!-- ! NEW BID PRICE -->
+        
+                                    <div class="new-bid">
+                                            <input type="text" name="new-bid" placeholder="New Bid" autocomplete="off">
+                                            <button type="submit" name="submit_new_bid">New Bid</button>
+                                    </div>
+
+                                    
+                                    <!-- ! END  -->
+                                    
+                                    {% endif %}
+                                    
+                                </div>
+                            <div id="price-element"></div>
+                    </div>
+                    <div class="image">
+                        {% if listing.image != "" %}
+                        <img src="{{ listing.image }}" alt="an image of a listing">
+                        {% else %}
+                        <i class="fa-sharp fa-regular fa-image"></i>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="description">
+                    <p><strong>Description : </strong></p>
+                    <p>
+                        {{ listing.description }}
+                    </p>
+                </div>
+                    {% if bid_price == None %}
+                        <style>
+                            .container .lisitng-content > .content::before {
+                                content: '${{listing.bid}}';
+                            }
+                        </style>
+                    {% else %}
+                        <style>
+                            .container .lisitng-content > .content::before {
+                                content: '${{ bid_price }}';
+                            }
+                        </style>
+                    {% endif %}
+            </div>
+            <div class="comments-container">
+                <div class="commetns-form">
+                    <div class="input">
+                        <input type="text" name="comment" placeholder="Comment" autocomplete="off">
+                    </div>
+                    <button name="add-comment">Add Commnent</button>
+                </div>
+                {% if comments != None %}
+                    {% for comment in comments|slice:"::-1" %}
+                    <div class="comments">
+                            <div class="comment-user">
+                                {{ comment.user_id.username }}
+                            </div>
+                            <div class="comment">
+                                {{ comment.comment }}
+                            </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="comments">
+                        No Comment Yet.
+                    </div>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'auctions/styles/listing.min.css' %}">
+{% endblock %} 

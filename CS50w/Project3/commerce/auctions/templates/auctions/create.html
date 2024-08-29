@@ -1,0 +1,52 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+    Create Listing 
+{% endblock %}
+<!-- ? in this form needs title,
+    ? the starting bid,
+    ? URL for image,
+    ? category 
+    ? description,
+? -->
+
+{% block body %}
+<div class="container">
+    <section>
+        <h2>Create Listing</h2>
+    {% if missing_data %}
+        <h3 class="missing-data">{{ missing_data }}</h3>
+    {% endif %}
+        <form action="{% url 'create' %}" method="post">
+            <div class="form">
+                {% csrf_token %}
+                <div class="input-label" title="Title">
+                    <span class="required">* Title</span>
+                    <input type="text" required placeholder="Title" name="title">
+                </div>
+                <div class="input-label" title="Image">
+                    <span>Image</span>
+                    <input type="text" placeholder="Enter image URL" name="image">
+                </div>
+                <div class="input-label" title="Bid">
+                {% if bid %}
+                    <span id="error">{{ Price }}</span>
+                {% else %}
+                    <span class="required">* Price</span>
+                {% endif  %}
+                    <input type="number" required placeholder="Enter Starting price" name="bid">
+                </div>
+                <div class="input-label" title="Category">
+                    <span>Category</span>
+                    <input type="text" placeholder="Enter Category" name="category">
+                </div>
+                <div class="input-label" title="Description">
+                    <span class="required">* Description</span>
+                    <textarea name="description" required id="" cols="30" rows="10" placeholder="Enter The Item Description"></textarea>
+                </div>
+            </div>
+            <input type="submit" value="Create" title="Submit">
+        </form>
+    </section>
+</div>
+{% endblock %}

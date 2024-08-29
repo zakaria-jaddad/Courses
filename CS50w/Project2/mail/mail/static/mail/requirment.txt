@@ -1,0 +1,4 @@
+so for compostions if the user sent an email they should be redirected to the inbox page and get an alert
+that they sent an email
+    // ! if the user sent to an email that doesn't exist they should get and error that the email is not valid 
+    

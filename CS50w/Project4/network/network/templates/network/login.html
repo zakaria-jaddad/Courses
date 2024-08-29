@@ -1,0 +1,40 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+
+<!-- * loading css file for login and registration -->
+{% load static %}
+    <link href="{% static 'network/styles/login-register.min.css' %}" rel="stylesheet">
+
+<!-- * end loading  -->
+
+    <div class="login-section">
+
+        <div class="heading">
+            <h1>Login</h1>
+        </div>
+
+        {% if message %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+            <svg xmlns="http://www.w3.org/2000/svg" id="remove-alert" height="48" viewBox="0 -960 960 960" width="48"><path d="m249-183-66-66 231-231-231-231 66-66 231 231 231-231 66 66-231 231 231 231-66 66-231-231-231 231Z"/></svg>
+        </div>
+        {% endif %}
+    
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <input autofocus class="form-control" type="text" name="username" placeholder="Username" autocomplete="off">
+
+            <input class="form-control" type="password" name="password" placeholder="Password" autocomplete="off">
+
+            <div class="submit-buton">
+                <input class="btn btn-primary" type="submit" value="Login">
+            </div>
+        </form>
+    
+        <span>Don't have an account? <a href="{% url 'register' %}">Register here.</a></span>
+        
+    </div>
+    <!-- login script -->
+    <script src="{% static 'network/script/login-register.js' %}"></script>
+{% endblock %}

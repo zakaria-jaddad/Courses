@@ -1,0 +1,143 @@
+@import './color.min.css';
+/* * Start Global Varibles */
+
+:root {
+    --main-transition : .3s ; 
+    --footer-background-color : #16181d ;
+    --padding-margin-right-left : 15px ;
+    --padding-top : 20px ;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: .1s;
+    -webkit-transition: .1s;
+    -moz-transition: .1s;
+    -ms-transition: .1s;
+    -o-transition: .1s;
+}
+.ds-b {
+    display: block;
+}
+.ds-n {
+    display: none;
+}
+body {  
+    background-color: var(--black-color);
+    scrollbar-color: var(--second-color);
+    color: var(--white-color);
+    height: 100vh;
+    position: relative;
+}
+/* all uls shouldn't have any styling */
+ul {
+    list-style: none;
+}
+/* scrool bar styling */
+body::-webkit-scrollbar{
+    width: 0.25rem;
+}
+body::-webkit-scrollbar-track{
+    background: #1e1e24;
+}
+body::-webkit-scrollbar-thumb{
+    background-color: var(--second-color);
+}
+/* * End Global Varibles */
+
+/* * Heading */
+.heading {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+}
+.heading > h1 {
+    padding-right: 15px;
+    padding-left: 15px;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+/* * End Heading */
+
+/* * Start Form */
+.new-post-form {
+    padding: 20px 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+.new-post-form > form {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.new-post-form > form > .form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.new-post-form > form > .form > textarea {
+    background-color: transparent;
+    color: var(--white-color);
+    outline: none;
+    border: none;
+    margin-bottom: 20px;
+    height: 56px;
+    font-size: 20px;
+    border-bottom: 1px solid var(--border-color);
+    resize: none;
+}
+.new-post-form > form > .form > textarea::placeholder {
+    padding-top: 10px;
+    text-transform: capitalize;
+    color: var(--second-white-color);
+    transition: var(--main-transition);
+    -webkit-transition: var(--main-transition);
+    -moz-transition: var(--main-transition);
+    -ms-transition: var(--main-transition);
+    -o-transition: var(--main-transition);
+}
+.new-post-form > form > .form > textarea:focus::placeholder {
+    color: transparent;
+}
+.new-post-form > form > .form > input[type="submit"] {
+    color: var(--white-color);
+    background-color: var(--second-color);
+    width: 80px;
+    height: 36px;
+    align-self: flex-end;
+    border: none;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    font-size: 17px;
+    line-height: 20px;
+    text-align: center;
+    font-weight: 600;
+    text-transform: capitalize;
+    transition: var(--main-transition);
+    -webkit-transition: var(--main-transition);
+    -moz-transition: var(--main-transition);
+    -ms-transition: var(--main-transition);
+    -o-transition: var(--main-transition);
+}
+.new-post-form > form > .form > input[type="submit"]:hover {
+    background-color: #0582d6;
+}
+.new-post-form > form > .user-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+}
+.new-post-form > form > .user-image  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+/* * End  Form */

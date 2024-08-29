@@ -1,0 +1,263 @@
+@import './all.min.css';
+@import './color.min.css';
+
+/* ! start animation */
+@keyframes show-section {
+    0% {
+        height: 0;
+        padding-right: 0;
+        padding-left: 0;
+        margin: 0;   
+    }
+    75%{
+        height: 50%;
+        padding-right: 10px;
+        padding-left: 10px; 
+        margin-bottom: 15px;
+    }
+    100% {
+        height: 100%;
+        padding-right: 10px;
+        padding-left: 10px; 
+        margin-bottom: 15px;
+    }
+}
+@keyframes hide-section {
+    0% {
+        height: 100%;
+        padding-right: 10px;
+        padding-left: 10px; 
+        margin-bottom: 15px;
+    }
+    25% {
+        height: 0;
+    }
+    75% {
+        height: 0;
+        padding-right: 10px;
+        padding-left: 10px; 
+        margin-bottom: 15px;
+    }
+    100% {
+        height: 0;
+        padding-right: 0;
+        padding-left: 0;
+        margin: 0; 
+    }
+}
+/* ! End start animation */
+
+/* user interaction */
+.user-interaction {
+    display: flex;
+    height: 48px;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    /* border-bottom: 1px solid var(--border-color); */
+    /* margin-bottom: var(--padding-top); */
+}
+.user-interaction svg {
+    cursor: pointer;
+    width: 23px;
+    height: 23px;
+    fill: var(--white-color);
+}
+.user-interaction .like-button > svg {
+    transition: var(--main-transition);
+    -webkit-transition: var(--main-transition);
+    -moz-transition: var(--main-transition);
+    -ms-transition: var(--main-transition);
+    -o-transition: var(--main-transition);
+}
+.user-interaction .like-button > svg:hover {
+    fill: #f91880;
+}
+.user-interaction .like-button-color > svg {
+    fill: #f91880;
+}
+.user-interaction .like-unlike {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.user-interaction .like-unlike > span.likes-counter {
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+/* comment */
+.user-interaction .comment {
+    transition: var(--main-transition);
+    -webkit-transition: var(--main-transition);
+    -moz-transition: var(--main-transition);
+    -ms-transition: var(--main-transition);
+    -o-transition: var(--main-transition);
+}
+.user-interaction .comment:hover {
+    fill: var(--second-color);
+}
+.comment-section {
+    height: 0;
+    overflow: auto;
+    animation-play-state: running;
+}
+
+    /* showing and hiding */
+
+.show-comment-section {
+    animation: show-section .5s ease forwards ;
+    -webkit-animation: show-section .5s ease forwards ;
+}
+.hide-comment-section {
+    animation: hide-section .5s ease forwards;
+    -webkit-animation: hide-section .5s ease forwards;
+}
+.comment-section > .comments {
+    margin: var(--padding-margin-right-left) 0;
+    padding: 0 10px;
+}
+/* comment form */
+.comment-form img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+.comment-form {
+    display: flex;
+    gap: 15px;
+}
+.comment-form .user-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.comment-form > form {
+    flex: 1;
+}
+.comment-form > form input {
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: var(--white-color);
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 15px;
+    font-weight: 300;
+}
+.comment-form > form > .input-container {
+    margin-bottom: 15px;
+    position: relative;
+}
+.comment-form > form > .input-container > div {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 1px;
+    width: 0%;
+    background-color: var(--white-color);
+    transition: var(--main-transition);
+    -webkit-transition: var(--main-transition);
+    -moz-transition: var(--main-transition);
+    -ms-transition: var(--main-transition);
+    -o-transition: var(--main-transition);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+.comment-form > form input:focus + div {
+    width: 100%;
+}
+.comment-form > form input::placeholder {
+    color: var(--second-white-colorw);
+}
+.comment-form > form > .interaction {
+    justify-content: flex-end;
+    gap: 15px;
+    flex-direction: row;
+} 
+.comment-form > form > .interaction > button:first-child {
+    background-color: transparent;
+    color: var(--white-color);
+    cursor: pointer;
+}
+.comment-form > form > .interaction > button:first-child:hover {
+    background-color: #555;
+}
+.comment-form > form > .interaction > button {
+    color: var(--white-color);
+    background-color: var(--second-color);
+    padding: 0px 15px;
+    height: 36px;
+    align-self: flex-end;
+    border: none;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    font-size: 17px;
+    line-height: 20px;
+    text-align: center;
+    font-weight: 600;
+    text-transform: capitalize;
+    transition: var(--main-transition);
+    -webkit-transition: var(--main-transition);
+    -moz-transition: var(--main-transition);
+    -ms-transition: var(--main-transition);
+    -o-transition: var(--main-transition);
+}
+.comment-form > form > .interaction > button:last-child {
+    background-color: #045082;
+}
+.comment-section > .comments .comment img {
+    width: 30px;
+    height: 30px;
+}
+.comment-section > .comments .comment > .user-image {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.comment-section > .comments .comment {
+    display: flex;
+    gap: 15px;
+}
+.comment-section > .comments .comment > .main-comment {
+    flex: 1;
+}
+.comment-section > .comments .comment:not(:last-child) {
+    margin-bottom: var(--padding-margin-right-left);
+}
+.comment-name-time {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.comment-name-time > span {
+    font-size: 12px;
+}
+.comment-name-time > span.comment-time {
+    color: var(--second-white-colorw);
+}
+.comment-name-time > span > a {
+    color: var(--white-color);
+}
+.comment-content {
+    color: var(--white-color);
+    font-size: 14px;
+}
+.ds-n {
+    display: none;
+}
+.ds-f {
+    display: flex;
+}

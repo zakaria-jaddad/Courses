@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- icon -->
+        <link rel="icon" href="../../static/network/images/logo/icon.png" sizes="32x32">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Network{% endblock %}</title>
+        <!-- Bootstrap CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- all css file -->
+        <link href="{% static 'network/styles/all.min.css' %}" rel="stylesheet">
+        <!-- forms css file -->
+        <link href="{% static 'network/styles/forms.min.css' %}" rel="stylesheet">
+        <!-- like and comment styles file -->
+        <link href="{% static 'network/styles/user-interaction.min.css' %}" rel="stylesheet">
+        <!-- main css file -->
+        <link href="{% static 'network/styles/styles.min.css' %}" rel="stylesheet">
+        <!-- JS index file -->
+        <script src="{% static 'network/script/index.js' %}"></script>
+        <!-- edit post file -->
+        <script src="{% static 'network/script/edit-post.js' %}"></script>
+        <!-- new post form file  -->
+        <script src="{% static 'network/script/new-post-form.js' %}"></script>
+        <!-- update data js file -->
+        <script src="{% static 'network/script/update.js' %}"></script>
+        <!-- comment js file -->
+        <script src="{% static 'network/script/comment.js' %}"></script>
+        <!-- Them light and dark file -->
+        <script src="{% static 'network/script/mode.js' %}"></script>
+
+    </head>
+    <body>
+        <div class="container-xl network">
+
+
+            <!-- ! here would be the nave bar with svg's icons  -->
+            <div class="header">
+                <div class="nav-bar">
+                    <div class="logo-image">
+                        <span class="title">network</span>
+                        <img src="../../static/network/images/logo/icon.png" alt="" class="icon">
+                    </div>
+
+
+
+                    <ul>
+                    {% if user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'index' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="r-1nao33i r-4qtqp9 r-yyyyoo r-lwhw9o r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-cnnz9e"><g><path d="M12 1.696L.622 8.807l1.06 1.696L3 9.679V19.5C3 20.881 4.119 22 5.5 22h13c1.381 0 2.5-1.119 2.5-2.5V9.679l1.318.824 1.06-1.696L12 1.696zM12 16.5c-1.933 0-3.5-1.567-3.5-3.5s1.567-3.5 3.5-3.5 3.5 1.567 3.5 3.5-1.567 3.5-3.5 3.5z"/></g></svg>
+                                <span class="home">home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/following" data-section="following" id="following-nav-a">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1hdv0qi"><g><path d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"/></g></svg>
+                                <span>following</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'profile' user.username %}" data-section="profile" id="profile-nav-a">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" class="r-1nao33i r-4qtqp9 r-yyyyoo r-lwhw9o r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-cnnz9e"><g><path d="M5.651 19h12.698c-.337-1.8-1.023-3.21-1.945-4.19C15.318 13.65 13.838 13 12 13s-3.317.65-4.404 1.81c-.922.98-1.608 2.39-1.945 4.19zm.486-5.56C7.627 11.85 9.648 11 12 11s4.373.85 5.863 2.44c1.477 1.58 2.366 3.8 2.632 6.46l.11 1.1H3.395l.11-1.1c.266-2.66 1.155-4.88 2.632-6.46zM12 4c-1.105 0-2 .9-2 2s.895 2 2 2 2-.9 2-2-.895-2-2-2zM8 6c0-2.21 1.791-4 4-4s4 1.79 4 4-1.791 4-4 4-4-1.79-4-4z"/></g></svg>
+                                <span>profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'logout' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M179-95q-39.462 0-67.231-27.475Q84-149.95 84-189v-582q0-39.463 27.769-67.231Q139.538-866 179-866h298v95H179v582h298v94H179Zm488-174-68-66 98-98H362v-94h333l-98-98 68-66 211 212-209 210Z"/></svg>
+                                <span>logout</span>
+                            </a>
+                        </li>
+                        <li class="new-post-li">
+                            <button id="new-post">new post</button>
+                        </li>
+                        <li class="new-post-li-svg-button">
+                            <svg id="new-post" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>
+                        </li>
+
+                        <!-- if the user us not authonticated -->
+                        {% else %}
+                        <li>
+                            <a href="{% url 'login' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M475-95v-94h296v-582H475v-95h296q39.463 0 67.231 27.769Q866-810.463 866-771v582q0 39.05-27.769 66.525Q810.463-95 771-95H475Zm-78-174-68-66 98-98H95v-94h330l-98-98 68-66 211 212-209 210Z"/></svg>   
+                                <span>login</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'register' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M319-248h322v-71H319v71Zm0-170h322v-71H319v71ZM229-55q-39.05 0-66.525-27.475Q135-109.95 135-149v-662q0-39.463 27.475-67.231Q189.95-906 229-906h363l234 234v523q0 39.05-27.769 66.525Q770.463-55 731-55H229Zm313-570v-186H229v662h502v-476H542ZM229-811v186-186 662-662Z"/></svg>   
+                                <span>register</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li class="li-mode">
+                            <!-- light -->
+                            <svg class="mode ds-b" id="light-mode" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M479.765-340Q538-340 579-380.765q41-40.764 41-99Q620-538 579.235-579q-40.764-41-99-41Q422-620 381-579.235q-41 40.764-41 99Q340-422 380.765-381q40.764 41 99 41Zm.235 60q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM70-450q-12.75 0-21.375-8.675Q40-467.351 40-480.175 40-493 48.625-501.5T70-510h100q12.75 0 21.375 8.675 8.625 8.676 8.625 21.5 0 12.825-8.625 21.325T170-450H70Zm720 0q-12.75 0-21.375-8.675-8.625-8.676-8.625-21.5 0-12.825 8.625-21.325T790-510h100q12.75 0 21.375 8.675 8.625 8.676 8.625 21.5 0 12.825-8.625 21.325T890-450H790ZM479.825-760Q467-760 458.5-768.625T450-790v-100q0-12.75 8.675-21.375 8.676-8.625 21.5-8.625 12.825 0 21.325 8.625T510-890v100q0 12.75-8.675 21.375-8.676 8.625-21.5 8.625Zm0 720Q467-40 458.5-48.625T450-70v-100q0-12.75 8.675-21.375 8.676-8.625 21.5-8.625 12.825 0 21.325 8.625T510-170v100q0 12.75-8.675 21.375Q492.649-40 479.825-40ZM240-678l-57-56q-9-9-8.629-21.603.37-12.604 8.526-21.5 8.896-8.897 21.5-8.897Q217-786 226-777l56 57q8 9 8 21t-8 20.5q-8 8.5-20.5 8.5t-21.5-8Zm494 495-56-57q-8-9-8-21.375T678.5-282q8.5-9 20.5-9t21 9l57 56q9 9 8.629 21.603-.37 12.604-8.526 21.5-8.896 8.897-21.5 8.897Q743-174 734-183Zm-56-495q-9-9-9-21t9-21l56-57q9-9 21.603-8.629 12.604.37 21.5 8.526 8.897 8.896 8.897 21.5Q786-743 777-734l-57 56q-8 8-20.364 8-12.363 0-21.636-8ZM182.897-182.897q-8.897-8.896-8.897-21.5Q174-217 183-226l57-56q8.8-9 20.9-9 12.1 0 20.709 9Q291-273 291-261t-9 21l-56 57q-9 9-21.603 8.629-12.604-.37-21.5-8.526ZM480-480Z"/></svg>
+                            <!-- dark -->
+                            <svg class="mode ds-n" id="dark-mode" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.667 16.5Q688.667-384 660-384q-114.689 0-195.345-80.655Q384-545.311 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z"/></svg>
+                        </li>
+                    </ul>
+                </div>
+
+                {% if user.is_authenticated %}
+                <div class="profile">
+                    <ul>
+                        <li class="user-content">
+                            <a href="{% url 'profile' user.username %}">
+                            {% if user.userProfileImage %}
+                                <img id="user-image" src='/media/{{ user.userProfileImage }}' alt="profile image of user ">
+                            {% else %}
+                                <img id="user-image" src="../../static/network/images/profile/no-one-testimonials.jpeg" alt="profile image of user ">
+                            {% endif %}
+                                <div class="content">
+                                    <span class="name">{{ user.username }}</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+
+
+            <!-- ! here would be the main content imags ets -->
+            <main class="main-content">
+                {% block body %}
+                {% endblock %}
+
+                <div class="new-post-form" id="new-post-form">
+                    <div class="remove-new-post-form">
+                        <svg id="remove-new-post-form" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m249-183-66-66 231-231-231-231 66-66 231 231 231-231 66 66-231 231 231 231-66 66-231-231-231 231Z"/></svg>
+                    </div>
+                    <form action="{% url 'index' %}" id="post-form" method="post">
+                        <div class="user-image" id="user-image">
+                    {% if user.userProfileImage %}
+                            <img id="user-image" src='/media/{{ user.userProfileImage }}' alt="profile image of user ">
+                    {% else %}
+                            <img id="user-image" src="../../static/network/images/profile/no-one-testimonials.jpeg" alt="profile image of user ">
+                    {% endif %}
+                        </div>
+                        {% csrf_token %}
+                        <div class="form">
+                            <textarea name="postContent" id="post" placeholder="what is happening!!!"></textarea>
+                            <input type="submit" value="post">
+                        </div>
+                    </form>
+                </div>
+
+            </main>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ page }}
+{% endblock %}
+
+
+{% block body %}
+
+    {% if content %}
+        <h1 class="heding">{{ page }}</h1>
+        <div class="content">
+            {{ text }}
+        </div>
+    {% else %}
+        <h1 class="heding">not found</h1>
+        nothing is here yet
+    {% endif  %}
+
+    <div class="container">
+        <form action="{% url 'edit' %}" method="get">
+            {% csrf_token %}
+            <input type="hidden" value="{{ page }}" name="title">
+            <input type="hidden" value="{{ content }}" name="content">
+            <button class="button">Edit</button>
+        </form>
+    </div>
+
+
+{% endblock %}

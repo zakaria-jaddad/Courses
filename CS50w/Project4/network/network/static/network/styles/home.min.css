@@ -1,0 +1,8 @@
+/* ! importing the css variables */
+@import './all.min.css';
+
+.home-section {
+    padding-top: var(--padding-top);
+}
+
+

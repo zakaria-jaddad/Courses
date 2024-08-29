@@ -1,0 +1,71 @@
+/* ! importing globa variables */
+@import './all.min.css';
+@import './color.min.css';
+
+/* * styling the alert for the username and pass error in login */
+@keyframes remove-alert {
+    0% {
+        height: 100%;
+        opacity: 1;
+    }
+    80% {
+        height: 100%;
+        opacity: 0;
+    }
+    100% {
+        height: 0%;
+        line-height: 0;
+        opacity: 0;
+        padding: 0;
+        margin-bottom: 0;
+    }
+}
+
+.alert {
+    text-transform: capitalize;
+    display: flex;
+    justify-content: space-between;
+    animation: remove-alert 3s ease;
+    -webkit-animation: remove-alert 3s ease;
+    animation-play-state: paused;
+}
+.alert > svg {
+    width: 25px;
+    height: 25px;
+    fill: #721c24;
+    cursor: pointer;
+}
+
+/* ! this a file for both login and regestration HTML files */
+
+
+.login-section , 
+.register-section {
+    padding: 0 15px;
+    padding-top: var(--padding-top);
+}
+.login-section > form, 
+.register-section > form {
+    margin-top: 50px;
+    color: var(--white-color);
+}
+.login-section > form input:not(input[type="submit"]), 
+.register-section> form input:not(input[type="submit"]) {
+    padding: 1.375rem 0.75rem;
+    background-color: unset;
+    background-color: transparent;
+    outline: none;
+    color: var(--white-color);
+    margin-bottom: 20px;
+    
+}
+.submit-buton {
+    display: flex;
+    justify-content: flex-end;
+}
+.login-section > span, 
+.register-section > span {
+    display: block;
+    text-align: center;
+}
+

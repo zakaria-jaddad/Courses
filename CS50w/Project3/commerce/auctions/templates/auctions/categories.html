@@ -1,0 +1,31 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+
+
+{% if category_out_of_range.0 == True %}
+<div class="alert alert-warning lisitng-created" role="alert" id="alert">
+    Ther Is No Category With This Name "{{ category_out_of_range.1 }}" <strong>Click here To Remove</strong>.
+</div>
+{% endif %}
+
+
+    {% if categories %}
+    <div class="container">
+        {% for category in categories %}
+            {% if category.category_name %}
+                <a href="{% url 'category' category.category_name %}">
+                    <div class="category">{{ category.category_name }}</div>
+                </a>
+            {% else %}
+                <a href="{% url 'category' 'no-category' %}">
+                    <div class="category">No Category</div>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>        
+    {% endif %}
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'auctions/styles/categories.min.css' %}">
+{% endblock %}
