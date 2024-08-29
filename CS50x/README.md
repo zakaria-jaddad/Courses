@@ -1,4 +1,4 @@
-# What is CS50
+# What is CS50x
 
 CS50x is the online version of Harvard University's introductory computer science course, CS50.
 
