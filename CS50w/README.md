@@ -8,7 +8,7 @@ Through hands-on projects, students learn to write and use APIs, create interact
 
 By semester’s end, students emerge with knowledge and experience in principles, languages, and tools that empower them to design and deploy applications on the Internet.
 
-- TODO:
+## TODO:
 - [x] [Search](./Project0/)
 - [x] [Mail](./Project1/)
 - [x] [Wiki](./Project2/)
